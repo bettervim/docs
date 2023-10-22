@@ -1,15 +1,15 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Documentation Starter Kit",
+  "name": "BetterVim | Your ultimate Neovim distribution",
   "logo": {
-    "dark": "/logo/dark.png",
-    "light": "/logo/light.png"
+    "dark": "/images/logo.webp",
+    "light": "/images/logo.webp"
   },
   "favicon": "/favicon.png",
   "colors": {
-    "primary": "#0069ED",
-    "light": "#4D9CFF",
-    "dark": "#0050B4"
+    "primary": "#07E4A2",
+    "light": "#fafafa",
+    "dark": "#000"
   },
   "topbarLinks": [
     {
@@ -40,20 +40,21 @@
   ],
   "navigation": [
     {
-      "group": "Home",
-      "pages": ["introduction", "features"]
-    },
-    {
-      "group": "API Documentation",
-      "pages": ["api-reference/authentication"]
-    },
-    {
-      "group": "Endpoint Examples",
+      "group": "Overview",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
+        "introduction",
+        "installation",
+        "updating",
+        "uninstalling",
+        "features",
+        "how-to-guides",
+        "troubleshooting"
+      ]
+    },
+    {
+      "group": "Customization",
+      "pages": [
+        "how-it-works"
       ]
     }
   ],
@@ -61,5 +62,8 @@
     "twitter": "https://twitter.com/mintlify",
     "github": "https://github.com/mintlify",
     "linkedin": "https://www.linkedin.com/company/mintsearch"
+  },
+  "modeToggle": {
+    "isHidden": true
   }
 }
