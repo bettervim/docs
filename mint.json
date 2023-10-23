@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "BetterVim | Your ultimate Neovim distribution",
   "logo": {
-    "dark": "/images/logo.webp",
-    "light": "/images/logo.webp"
+    "dark": "/images/logo.svg",
+    "light": "/images/logo.svg"
   },
   "favicon": "/favicon.png",
   "colors": {
@@ -22,11 +22,6 @@
     "url": "https://github.com/mintlify/starter"
   },
   "anchors": [
-    {
-      "name": "API Reference",
-      "icon": "rectangle-terminal",
-      "url": "api-reference"
-    },
     {
       "name": "Changelog",
       "icon": "list",
@@ -64,6 +59,6 @@
     "linkedin": "https://www.linkedin.com/company/mintsearch"
   },
   "modeToggle": {
-    "isHidden": true
+    "default": "dark"
   }
 }
