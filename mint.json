@@ -11,26 +11,21 @@
     "light": "#fafafa",
     "dark": "#000"
   },
-  "topbarLinks": [
-    {
-      "name": "Documentation",
-      "url": "https://mintlify.com/docs"
-    }
-  ],
+  "topbarLinks": [],
   "topbarCtaButton": {
     "name": "Get Started",
-    "url": "https://github.com/mintlify/starter"
+    "url": "overview/introduction"
   },
   "anchors": [
     {
-      "name": "Changelog",
-      "icon": "list",
-      "url": "https://mintlify.com"
+      "name": "Get your license",
+      "icon": "bolt",
+      "url": "https://bettervim.com"
     },
     {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://mintlify.com/community"
+      "name": "FAQ",
+      "icon": "question",
+      "url": "https://bettervim.com/#faq"
     }
   ],
   "navigation": [
@@ -56,6 +51,23 @@
         "customization/flags",
         "customization/override-defaults",
         "customization/plugins"
+      ]
+    },
+    {
+      "group": "Mappings",
+      "pages": [
+        "mappings/general",
+        "mappings/lsp",
+        "mappings/file-explorer",
+        "mappings/file-finder",
+        "mappings/custom-mappings"
+      ]
+    },
+    {
+      "group": "General",
+      "pages": [
+        "general/credits",
+        "general/learning-resources"
       ]
     }
   ],

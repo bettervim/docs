@@ -1,6 +1,9 @@
 [snippet-better-vim-lua]
 match='''
 <CodeSnippet
+
+
+
 	code={`:[content]`}
 	lang="javascript"
 	fileType="config"
