@@ -109,3 +109,60 @@ return {
   plugins = plugins,
 }
 ```
+
+## Better Vim Utils
+
+We expose some functions that you can use to improve your customizations.
+
+To use those functions, just import the `better-vim-utils` module and use them:
+
+```lua better-vim.lua
+local utils = require "better-vim-utils"
+```
+
+### Exposed functions
+
+#### `load_theme`
+
+This function will be used to load a custom theme only after all other plugins are already loaded.
+It will ensure your theme will have all the correct functionalities expected by your plugins.
+
+The function expects your theme configuration table as argument and returns this table with
+some additional properties (`lazy = false` and `priority = 1000`), to load the theme only when all other plugins are ready.
+
+Here is an example of using this function to load [**poimandres**](https://github.com/olivercederborg/poimandres.nvim) theme:
+
+```lua better-vim.lua
+return {
+  plugins = {
+    utils.load_theme {
+      "olivercederborg/poimandres.nvim",
+      config = function()
+        require "poimandres".setup {}
+        vim.cmd [[ colorscheme poimandres ]]
+      end,
+    }
+  }
+}
+```
+
+#### `statusline.get_file_name`
+
+This function will be used with `lualine` plugin. 
+
+It will show ` Explorer` text when `NvimTree` buffer is in focus, and the 
+_filename_ when you have a file opened and the file buffer is in focus:
+
+Usage example:
+
+```lua better-vim.lua
+local utils = require "better-vim-utils"
+
+return {
+  lualine = {
+    sections = {
+      c = { utils.statusline.get_file_name },
+    },
+  }
+}
+```
