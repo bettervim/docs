@@ -55,6 +55,34 @@ You can use `i` (for `insert` mode), `n` (for `normal` mode), `v` (for `visual`
 and `select` modes) or `x` (for only `visual` mode). The options are the same as
 used in `mappings.custom`.
 
+### Creating mappings for tabs
+
+You can create custom mappings to change tabs. The default mapping is `alt/option` + **tab number**.
+To customize it, just pass a function to the `tabs` key inside `mappings` table.
+The function receives the `tab` number. That way you just concatenate the tab number with your custom keys:
+
+``` lua better-vim.lua
+return {
+  mappings = {
+  tabs = function(tab)
+    return "<leader>h" .. tab
+  end,
+  }
+}
+```
+
+The example above will create the mappings:
+
+```
+<leader>h1 -> first tab
+<leader>h2 -> second tab
+...
+<leader>h20 -> twentyth tab
+```
+
+Now, you can use `<leader>h1` to go to tab 1, instead of `alt` + `1`.
+
 ### Creating mappings with lua
+
 To create custom mappings using `lua` you can use the `hooks.after_setup` entry in `better-vim.lua` file, following this [tutorial](https://neovim.io/doc/user/lua-guide.html#lua-guide-mappings)
 from the Neovim official documentation.
