@@ -26,3 +26,10 @@ Auto format the code on save if the LSP has this feature.
 Disable theme auto loading. Use this flag if you want to setup your theme manually without setting `colorscheme` and loading themes automatically.
   - Options: `true` and `false`
   - Default: `false`
+
+### `experimental_tsserver`
+Use [`typescript-tools`](https://github.com/pmizio/typescript-tools.nvim) as LSP instead of `tsserver` from [`mason-lspconfig`](https://github.com/williamboman/mason-lspconfig.nvim).
+This feature is experimental, but you can enable/disable it any time.
+To create your own custom `on_attach` function, you can keep using `lsps.tsserver`, as shown in [Installing LSPs](/customization/installing-lsps) section.
+  - Options: `true` and `false`
+  - Default: `false`
