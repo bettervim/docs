@@ -89,21 +89,26 @@ from the Neovim official documentation.
 
 ### Custom mappings for autocomplete (cmp) 
 
+You can customize your mappings for autocomplete (`nvim-cmp`) using `lua`, just use the `cmp` entry in your configuration. 
+Check out the example below with defaults:
 
-To create custom mappings for autocomplete (`cmp`) using `lua`, you can use the `cmp` entry in your configuration. Check out the example below:
 ```lua better-vim.lua
-M.cmp = {
-  mappings = {
-    scroll_docs_down = "<C-d>",
-    scroll_docs_up = "<C-u>",
-    next_item = "<C-n>",
-    prev_item = "<C-p>",
-    show_list = "<C-Space>",
-    confirm = "<CR>",
-  },
-  before_default_sources = {},
-  after_default_sources = {},
+return {
+  cmp = {
+    mappings = {
+      scroll_docs_down = "<C-d>",
+      scroll_docs_up = "<C-u>",
+      next_item = "<C-n>",
+      prev_item = "<C-p>",
+      show_list = "<C-Space>",
+      confirm = "<CR>",
+    },
+    before_default_sources = {},
+    after_default_sources = {},
+  }
 }
 ```
 
-
+The `before_default_sources` and `after_default_sources` options can be used to load 
+`nvim-cmp` plugins before and after the default sources that is already installed with Better Vim.
+If you want to know more about `nvim-cmp` sources, check out the [plugin documentation](https://github.com/hrsh7th/nvim-cmp).
