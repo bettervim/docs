@@ -1,0 +1,35 @@
+The `flags` option is used to toggle features on the config. Let's see an example of how to use the flags option to disable the Better Vim tabs feature:
+Open your Better Vim config and add the `flags` option:
+
+```lua better-vim.lua
+return {
+  flags = {
+    disable_tabs = true
+  }
+}
+```
+
+Reopen your **neovim** and you'll notice that there are no tabs on the top.
+
+## Available flags
+### `disable_tabs`
+Disable the tabs feature.
+  - Options: `true` and `false`
+  - Default: `false`
+
+### `format_on_save`
+Auto format the code on save if the LSP has this feature.
+  - Options: `true` and `false`
+  - Default: `false`
+
+### `disable_auto_theme_loading`
+Disable theme auto loading. Use this flag if you want to setup your theme manually without setting `colorscheme` and loading themes automatically.
+  - Options: `true` and `false`
+  - Default: `false`
+
+### `experimental_tsserver`
+Use [`typescript-tools`](https://github.com/pmizio/typescript-tools.nvim) as LSP instead of `tsserver` from [`mason-lspconfig`](https://github.com/williamboman/mason-lspconfig.nvim).
+This feature is experimental, but you can enable/disable it any time.
+To create your own custom `on_attach` function, you can keep using `lsps.tsserver`, as shown in [Installing LSPs](/customization/installing-lsps) section.
+  - Options: `true` and `false`
+  - Default: `false`

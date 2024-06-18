@@ -1,0 +1,82 @@
+Better Vim provides the flexibility to override the default configurations or add
+new ones by utilizing the `hooks.before_setup` and `hooks.after_setup` functions.
+These functions allow you to modify various aspects of Better Vim's behavior
+before and after the setup process.
+
+## `hooks.before_setup`
+
+The `hooks.before_setup` function is called before the Better Vim setup process
+begins. It serves as a hook where you can make modifications or override default
+configurations. Here's an example of how to use `hooks.before_setup`:
+
+```lua better-vim.lua
+return {
+  hooks = {
+    before_setup = function()
+      -- Do something before Better Vim starts its setup process
+    end,
+  },
+}
+```
+
+The `hooks.before_setup` function is not that useful, but it is there if you need it.
+
+## `hooks.after_setup`
+
+The `hooks.after_setup` function is called after the Better Vim setup process has
+completed. It provides an opportunity to further customize or extend Better Vim's
+functionality. Here's an example of how to use `hooks.after_setup`:
+
+```lua better-vim.lua
+return {
+  hooks = {
+    after_setup = function()
+      -- Perform additional configuration or add new functionality here
+    end,
+  },
+}
+```
+
+Within the `hooks.after_setup` function, you can add additional configurations,
+keybindings, or any other customization that you desire.
+
+This allows you to enhance the default Better Vim setup with your own preferences
+or extend it with additional features.
+
+## Examples
+
+Let's take a look at a few examples to illustrate how you can utilize `hooks` to
+override defaults or add new configurations:
+
+### 1. Add custom keybinding
+
+```lua better-vim.lua
+return {
+  hooks = {
+    after_setup = function()
+      vim.api.nvim_set_keymap('n', '<Leader>l', ':set number!<CR>', { silent = true })
+    end,
+  },
+}
+```
+
+This example adds a custom keybinding using `vim.api.nvim_set_keymap` within
+`hooks.after_setup`. The keybinding toggles line numbers when `<Leader>l` is
+pressed in normal mode.
+
+### 2. Load additional configuration file
+```lua better-vim.lua
+return {
+  hooks = {
+    after_setup = function()
+      require "better-vim.my_custom_config"
+    end,
+  },
+}
+```
+
+In this example, an additional configuration file named `my_custom_config.lua`
+is loaded using `require` within `hooks.after_setup`.
+
+This allows you to separate your custom configurations into separate files for
+better organization and load them only after all the Better Vim setup is done.

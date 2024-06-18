@@ -1,0 +1,201 @@
+---
+title: How it works
+---
+When you install BetterVim, we create some folders on your environment:
+
+### `~/.config/nvim`
+Where your neovim config lives. Don't touch these files if you want to receive Better Vim updates.
+
+### `~/.config/better-vim`
+This folder contains your customizations. You'll see two files that you can use to create customizations and overrides:
+- `better-vim.lua` - You'll use this lua file to pass options to Better Vim like the theme name/flavour and your custom mappings.
+- `.bettervimrc` - Do not touch this file. It contains your license key from Gumroad that we use to install the updates for Better Vim.
+
+# The `better-vim.lua` file
+
+This documentation provides an overview of the `better-vim.lua` file, which serves
+as the entry point for configuring Better Vim.
+
+The `better-vim.lua` file is located in `~/.config/better-vim/better-vim.lua`.
+This file acts as the main configuration file for Better Vim and allows you to
+organize your configuration files and plugins within the `~/.config/better-vim/`
+directory.
+
+Check the [**File Structure**](#file-structure) session to learn more.
+
+## Configuration Options
+
+The `better-vim.lua` file provides various configuration options to customize your
+Vim environment. Below are the defaults for all possible entries to `better-vim.lua` file:
+
+```lua
+return {
+  plugins = {},
+  unload_plugins = {},
+  lsps = {},
+  formatters = {},
+  treesitter = {},
+  gitsigns = {},
+  noice = {},
+  theme = {
+    name = "catppuccin",
+    catppuccin_flavour = "mocha",
+    ayucolor = "dark",
+    nightfox = {},
+    rose_pine = {
+      dark_variant = "main",
+    },
+  },
+  flags = {
+    disable_auto_theme_loading = false,
+    disable_tabs = false,
+    format_on_save = false,
+    experimental_tsserver = false,
+  },
+  hooks = {},
+  mappings = {
+    leader = " ",
+    tabs = nil,
+    custom = {},
+    by_mode = {
+      n = {},
+      i = {},
+      v = {},
+      x = {},
+    },
+  },
+  lualine = {
+    options = {},
+    sections = {},
+  },
+  telescope = {},
+  nvim_tree = {},
+  whichkey = {},
+  dashboard = {
+    header = {},
+  },
+}
+```
+
+Throughout this documentation you will find all the necessary information to know
+what each of this entries means.
+
+You can explore and modify them according to your preferences and needs.
+
+## File Structure
+
+The file structure for Better Vim configuration follows the organization within
+the `~/.config/better-vim/` directory.
+
+You can break your configuration in small modules to organize them better.
+
+For example, if you have a configuration file called `plugins.lua`, it should be
+placed inside the `~/.config/better-vim/` directory.
+
+You can import modules and configuration files using the `better-vim` namespace.
+To import a module, use the following syntax:
+
+```lua plugins.lua
+require "better-vim.module_name"
+```
+
+Replace `module_name` with the name of the module or configuration file you want
+to import.
+
+In the above example, if you want to put all your plugins inside
+the file `plugins.lua`, just create this file inside `~/.config/better-vim/` directory
+and import it in `better-vim.lua`:
+
+```lua better-vim.lua
+local plugins = require "better-vim.plugins"
+
+return {
+  plugins = plugins,
+}
+```
+
+## Better Vim Utils
+
+We expose some functions that you can use to improve your customizations.
+
+To use those functions, just import the `better-vim-utils` module and use them:
+
+```lua better-vim.lua
+local utils = require "better-vim-utils"
+```
+
+### Exposed functions
+
+#### `load_theme` (deprecated)
+
+> **NOTE:** If you're using this function, please, update to the latest version of Better Vim and use
+`should_load_theme` instead. This function will be removed in the next major release.
+
+This function will be used to load a custom theme only after all other plugins are already loaded.
+It will ensure your theme will have all the correct functionalities expected by your plugins.
+
+The function expects your theme configuration table as argument and returns this table with
+some additional properties (`lazy = false` and `priority = 1000`), to load the theme only when all other plugins are ready.
+
+Here is an example of using this function to load [**poimandres**](https://github.com/olivercederborg/poimandres.nvim) theme:
+
+```lua better-vim.lua
+return {
+  plugins = {
+    utils.load_theme {
+      "olivercederborg/poimandres.nvim",
+      config = function()
+        require "poimandres".setup {}
+        vim.cmd [[ colorscheme poimandres ]]
+      end,
+    }
+  }
+}
+```
+
+#### `should_load_theme`
+
+This function will be used to load a custom theme only after all other plugins are already loaded,
+and only if the theme itself is in use.
+It will ensure your theme will have all the correct functionalities expected by your plugins.
+
+The function expects two arguments: first one is the name of your theme, and second one is your 
+theme configuration table, that will be returned with some additional properties 
+(`lazy = false` and `priority = 1000`), to load the theme only when all other plugins are ready.
+
+Here is an example of using this function to load [**poimandres**](https://github.com/olivercederborg/poimandres.nvim) theme:
+
+```lua better-vim.lua
+return {
+  plugins = {
+    utils.should_load_theme("poimandres", {
+      "olivercederborg/poimandres.nvim",
+      config = function()
+        require "poimandres".setup {}
+        vim.cmd [[ colorscheme poimandres ]]
+      end,
+    }),
+  }
+}
+```
+
+#### `statusline.get_file_name`
+
+This function will be used with `lualine` plugin. 
+
+It will show ` Explorer` text when `NvimTree` buffer is in focus, and the 
+_filename_ when you have a file opened and the file buffer is in focus:
+
+Usage example:
+
+```lua better-vim.lua
+local utils = require "better-vim-utils"
+
+return {
+  lualine = {
+    sections = {
+      c = { utils.statusline.get_file_name },
+    },
+  }
+}
+```
