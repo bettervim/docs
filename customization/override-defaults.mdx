@@ -48,7 +48,7 @@ or extend it with additional features.
 Let's take a look at a few examples to illustrate how you can utilize `hooks` to
 override defaults or add new configurations:
 
-### 2. Add custom keybinding
+### 1. Add custom keybinding
 
 ```lua better-vim.lua
 return {
@@ -64,7 +64,7 @@ This example adds a custom keybinding using `vim.api.nvim_set_keymap` within
 `hooks.after_setup`. The keybinding toggles line numbers when `<Leader>l` is
 pressed in normal mode.
 
-### 3. Load additional configuration file
+### 2. Load additional configuration file
 ```lua better-vim.lua
 return {
   hooks = {
