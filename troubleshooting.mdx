@@ -1,0 +1,57 @@
+---
+title: Troubleshooting
+description: Answers / Solutions for common problems when using Better Vim.
+---
+
+### I can't see folders like .github or dotfiles
+
+By default we hide any dotfile like `.github` or `.husky` and files ignored by your `.gitignore`. If you want to show
+these files/folders, you have two options:
+
+- With your cursor on the file explorer, press <span>shift</span> + <span>u</span> and/or <span>shift</span> + <span>i</span> to show dotfiles/ignored files.
+- Or, you can also change the default filters for the file explorer. Please check out the customization section of the file explorer [here](/customization/plugins#nvimtree-options-(file-explorer)).
+
+### Icons are not working
+
+You need to install a powerline font like [NERD Fonts](https://www.nerdfonts.com/font-downloads) and set it up that font in your terminal. We're using **SpaceMono Nerd Font** in our screenshots. A powerline font is required for a better experience, since we're using a font-based icons in the file explorer, file finder, etc.
+
+### How to change the default leader
+
+Check this [guide](/mappings/custom-mappings#changing-the-default-leader-key).
+
+### How to create custom mappings
+
+Check this [guide](/mappings/custom-mappings#creating-your-own-mappings).
+
+### I don't have the .bettervimrc
+
+To create the `.bettervimrc` file on your setup, run the following comand:
+
+```bash
+curl -L https://bettervim.com/bettervimrc/YOUR_LICENSE | bash
+```
+<Note>Don't forget to replace <span>YOUR_LICENSE</span> with your license key provided by Gumroad.</Note>
+
+### I'm seeing weird error messages
+
+If you already had a previous installation of Neovim, and after installed Better Vim
+you are seeing some weird error messages, you should clean up your system,
+removing everything that was automatically created by Neovim or its dependencies.
+
+Follow the steps below:
+
+- First, [uninstall Better Vim](/uninstalling)
+- Delete all Neovim related directories:
+
+```bash
+rm -rf ~/.config/nvim
+rm -rf ~/.cache/nvim
+rm -rf ~/.local/nvim
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+```
+
+- Now you can [install Better Vim](/installation) again.
+
+If you keep seeing weird errors, feel free to drop us a message at [bettervim@gmail.com](bettervim@gmail.com)
+and we'll try to help you.

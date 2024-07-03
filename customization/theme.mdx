@@ -1,0 +1,150 @@
+# Themes
+
+Better Vim comes with 9 hand-picked themes:
+
+- [Dracula](https://github.com/dracula/vim)
+- [Catppuccin](https://github.com/catppuccin/nvim)
+- [Ayu](https://github.com/ayu-theme/ayu-vim)
+- [Palenight](https://github.com/drewtempelmeyer/palenight.vim)
+- [Tokyo Night](https://github.com/folke/tokyonight.nvim)
+- [Nord](https://github.com/arcticicestudio/nord)
+- [One Dark Pro](https://github.com/olimorris/onedarkpro.nvim)
+- [Rosé Pine](https://github.com/rose-pine/neovim)
+- [Nightfox](https://github.com/EdenEast/nightfox.nvim)
+
+## Changing the theme
+
+The default theme is **Catppuccin**. If you want to change the theme, just change the `theme.name` on the Better Vim config:
+
+```lua better-vim.lua
+return {
+  theme = {
+    name = "dracula"
+  }
+}
+```
+### Available themes:
+
+- `catppuccin`
+- `dracula`
+- `ayu` (and its variants, check [here](https://github.com/ayu-theme/ayu-colors))
+- `palenight`
+- `tokyonight`
+- `nord`
+- `onedark`
+- `rose-pine`
+- `nightfox` (and its variants, check [here](https://github.com/EdenEast/nightfox.nvim#nightfox-1))
+
+## Changing the flavour
+
+Some themes like **Catppuccin** or **Ayu** have theme flavours. These flavours can be changed using the flavour key for the respective theme. For example,
+if you're using Catppuccin and want to change the flavour from the default flavour `frappe` to `latte` you can do this by changing your config to something like:
+
+```lua better-vim.lua
+return {
+  theme = {
+    name = "catppuccin",
+    // Add this line
+    catppuccin_flavour = "latte"
+  }
+}
+```
+
+Or, if you're using **Ayu**, you can change the theme flavour doing something like:
+
+```lua better-vim.lua
+return {
+  theme = {
+    name = "ayu",
+    ayucolor = "light"
+  }
+}
+```
+<Note>
+It's important to notice that each theme has its own <span>flavour key</span>. For example: The flavour key for Catppuccin is <code>catppuccin_flavour</code>, but for Ayu is <code>ayucolor</code>. You can see all flavours and flavour keys below.
+</Note>
+
+## Available flavours
+
+Each theme has **its own flavour key**. Here is the complete list of flavours grouped by theme:
+
+- For `catppuccin`
+
+  - Flavour key: `catppuccin_flavour`
+  - Flavours: `frappe`, `latte`, `mocha` and `macchiato`
+
+- For `ayu`
+
+  - Flavour key: `ayu_color`
+  - Flavours: `dark` and `light`
+
+- For `rose-pine`
+  - You can use the field `rose_pine` to pass options:
+
+```lua better-vim.lua
+return {
+      theme = {
+        name = "rose-pine",
+        rose_pine = { variant_dark = "moon" },
+      },
+    }
+```
+
+- For `nightfox`
+  - You can use the field `nightfox` to pass options:
+
+```lua better-vim.lua
+return {
+      theme = {
+        name = "nightfox",
+        nightfox = {
+          options = {
+            colorblind = { enable = true },
+          },
+        },
+      },
+    }
+```
+- For all other themes, just change `theme.name`.
+
+## Installing custom themes
+
+You can install custom themes using [lazy.nvim](https://github.com/folke/lazy.nvim) which is the default plugin manager for Better Vim.
+Let's see how to install the [Gruvbox](https://github.com/) theme:
+
+### 1. Adding it the to the plugins list
+
+Better vim allows you to install custom plugins using the `plugins` entry in `better-vim.lua` file. A neovim/vim theme is also considered a vim plugin.
+You can install the Gruvbox by adding this following code to the `plugins` entry in `better-vim.lua` file:
+
+<CodeSnippet
+  code={`return {
+  plugins = {
+    "morhetz/gruvbox",
+  },
+}`}
+  lang="javascript"
+  fileType="config"
+/>
+<br />
+<br />
+
+Reopen your Neovim and you'll see that `lazy.nvim` is installing the theme automatically.
+
+### 2. Setting up the theme
+
+Now, open your Better Vim config and change the `theme.name` to `gruvbox`:
+
+```lua better-vim.lua
+return {
+  plugins = {
+   "morhetz/gruvbox",
+  },
+  theme = {
+    name = "gruvbox",
+  }
+}
+```
+<br />
+<br />
+Now, reopen your **neovim** and tada 🎉 you should see the new theme applied to your setup.
