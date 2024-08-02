@@ -1,0 +1,93 @@
+You can add more neovim plugins to your Better Vim setup using [lazy.nvim](https://github.com/folke/lazy.nvim) which is the default plugin manager for Better Vim.
+This guide shows you how to install any vim/neovim plugin using the plugin manager and the Better Vim modules.
+
+## 1. Adding the plugin
+The first step to install a plugin to your Better Vim config is add it to the plugins list. `lazy.nvim` uses Github to install and
+manage plugins. For example, if we want to install the [todo-comments](https://github.com/folke/todo-comments.nvim) plugin we can change the entry `plugins` in `better-vim.lua`:
+
+```lua better-vim.lua
+return {
+  plugins = {
+    "folke/todo-comments.nvim",
+  },
+}
+```
+
+You don't need to pass the entire url of the repository, instead, we just pass the `username/repository` to the plugin manager.
+Usually, the installation instructions of the plugin show how to install the plugin using **lazy.nvim** and other package managers. If `lazy.nvim` is not present, the installation via `Packer` is pretty simmilar, with some differences that you can see [here](https://github.com/folke/lazy.nvim#-migration-guide).
+
+If the plugin has some dependencies, you can use the `dependencies` entry in the plugin `table`:
+
+```lua better-vim.lua
+return {
+  plugins = {
+    "nvim-lua/plenary.nvim",
+    { "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim" },
+  },
+}
+```
+
+## 2. Setting up the plugin
+Some plugins (like todo-comments) requires a setup or an initial config to work. You can do this using the entry `config` in the plugin `table`:
+
+```lua better-vim.lua
+return {
+  plugins = {
+    "nvim-lua/plenary.nvim",
+    {
+      "folke/todo-comments.nvim",
+      dependencies = "nvim-lua/plenary.nvim",
+      config = function()
+        require("todo-comments").setup {}
+      end,
+    },
+  },
+}
+```
+
+Using the `.setup` method is a common way to configure plugins in Vim from `Lua`. If `.setup` is the only function you need to call to setup your plugin, and/or pass some properties to it, instead of creating a new function, requiring the plugin and calling the `.setup` method, you can just use the entry `opts` instead:
+
+```lua better-vim.lua
+return {
+  plugins = {
+    "nvim-lua/plenary.nvim",
+    {
+      "folke/todo-comments.nvim",
+      dependencies = "nvim-lua/plenary.nvim",
+      opts = {},
+    },
+  },
+}
+```
+
+<Note>
+Sometimes you need to execute raw Vim commands to setup the plugin. <br />You can use <span>vim.cmd [[ VIM_COMMAND_HERE ]]</span> to run Vim commands inside of a <code>.lua</code> file.
+</Note>
+
+After all that, reopen your neovim and plugins will be installed asynchronously.
+
+You can see all of them using the command `:Lazy` 🎉
+
+<Note>
+To see every possible option, check out the <a href='https://github.com/folke/lazy.nvim' target='_blank'>lazy.nvim</a> documentation page.
+</Note>
+
+# Updating plugins
+
+To update all your plugins, just run:
+
+```lua
+:Lazy sync
+```
+
+Or open the `:Lazy` interface and press `Shift + S`.
+
+# Uninstalling plugins
+
+If you want to uninstall any plugin, remove the plugin from the `plugins` entry in `better-vim.lua`, reopen neovim and run this command inside Neovim:
+
+```lua
+:Lazy sync
+```
+
+After a new reopen, the plugin will be uninstalled. To cleanup removed plugins, you can type `:Lazy` to open Lazy interface, then press `Shift + X`, or just type `:Lazy clean`.

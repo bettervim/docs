@@ -1,0 +1,29 @@
+name: "Pre-deploy Mintlify"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Change email
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Checkout files
+        uses: actions/checkout@v3
+
+      - name: 🔧 Configure Git
+        run: |
+          git config --global user.name "Marcos Oliveira"
+          git config --global user.email "vmarcosp.pereira@gmail.com"
+          git filter-branch --commit-filter '
+                  if [ "$GIT_AUTHOR_EMAIL" != "vmarcosp.pereira@gmail.com" ];
+                  then
+                          GIT_AUTHOR_NAME="Marcos Oliveira";
+                          GIT_AUTHOR_EMAIL="vmarcosp.pereira@gmail.com";
+                          git commit-tree "$@";
+                  else
+                          git commit-tree "$@";
+                  fi' HEAD
+          git push origin ${GITHUB_REF##*/} -f

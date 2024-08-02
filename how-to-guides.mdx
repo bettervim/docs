@@ -1,0 +1,25 @@
+---
+title: How-to guides
+description: A list of common customizations, tutorials and guides for mastering Better Vim.
+--- 
+
+## Setting custom icons
+If you want to set custom icons for elements like tabs, file explorer, file finder, etc, just add this following config to the entry `hooks.after_setup` in `better-vim.lua` file:
+
+```lua better-vim.lua
+return {
+  hooks = {
+    after_setup = function()
+      require("nvim-web-devicons").set_icon {
+        res = {
+          icon = "ﬦ",
+          color = "#e6484f",
+          name = "ReScript"
+        }
+      }
+    end,
+  },
+}
+```
+
+Since we're using **nvim-web-devicons** as our icons plugin, you can see more about custom icons on its [official documentation](https://github.com/nvim-tree/nvim-web-devicons).

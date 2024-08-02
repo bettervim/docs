@@ -1,0 +1,124 @@
+---
+title: Installing LSPs
+description: Learn how to configure BetterVim for various any programming language.
+---
+
+## Installing New Language Servers (LSPs) with Mason
+
+Better Vim provides seamless integration with various Language Servers (LSPs)
+through the use of Mason. Mason simplifies the setup and configuration of LSPs
+within Better Vim, allowing you to enhance your coding experience with specific
+language features and intelligent code suggestions.
+
+To install a new LSP using Mason, follow these steps:
+
+- Open the `better-vim.lua` file located in your Better Vim configuration directory.
+- Locate the `lsps` entry within the configuration file. If it doesn't exist,
+you can create it as an empty table using the following format:
+
+```lua better-vim.lua
+return {
+   lsps = {},
+ }
+```
+
+- Inside the `lsps` table, add a new entry for the desired language server.
+The key should be a unique identifier for the LSP, and the value should be an
+empty table. This table is used to configure the specific settings and `on_attach`
+function for the LSP through lspconfig. For example, to install the `prismals`
+language server, your configuration would look like this:
+
+```lua better-vim.lua
+return {
+   lsps = {
+     prismals = {}, -- Configuration settings for "prismals" LSP
+   },
+ }
+```
+
+<Note>
+You can find all available LSPs using the command `:Mason` and doing a `Ctrl + F`
+to find the language server you want to install.
+</Note>
+
+- Customize the configuration settings for the LSP within its respective table.
+You can refer to the documentation of the specific LSP or lspconfig for the
+available options and their meanings.
+
+To add settings or customize the `on_attach` function, see the example below:
+
+```lua better-vim.lua
+return {
+  lsps = {
+    tsserver = {
+      settings = {
+        -- tsserver settings live here. If you don't have settings, you don't need
+        -- to add this section.
+      },
+      on_attach = function(client, bufnr)
+        require "twoslash-queries".on_attach(client, bufnr)
+      end,
+    },
+  }
+}
+```
+
+- Save the `better-vim.lua` file.
+
+- Restart Better Vim or reload the configuration to apply the changes.
+
+Congratulations! You have successfully installed a new Language Server using Mason.
+Better Vim will now utilize the features provided by the LSP to enhance your
+coding workflow.
+
+## Installing New Formatters with none-ls
+
+none-ls is a plugin integrated with Better Vim that enables you to format your code
+using various formatters. By leveraging none-ls, you can maintain consistent code
+formatting and adhere to coding style guidelines across different programming languages.
+
+To install a new formatter using none-ls, follow these steps:
+
+- Open the `better-vim.lua` file located in your Better Vim configuration directory.
+
+- Locate the `formatters` entry within the configuration file. If it doesn't
+exist, you can create it as an empty table using the following format:
+
+
+```lua better-vim.lua
+return {
+   formatters = {},
+ }
+```
+
+- Inside the `formatters` table, add a new entry for the desired formatter.
+The key should be a unique identifier for the formatter, and the value should be
+an empty table. This table is passed to the `with` method when configuring formatting sources
+for none-ls. For example, to install the `blade_formatter` formatter, your
+configuration would look like this:
+
+```lua better-vim.lua
+return {
+   formatters = {
+     blade_formatter = {} -- Configuration for "blade_formatter" formatter
+   }
+ }
+```
+
+<Note>
+You can find all formatters for none-ls following <a href='https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md#formatting' target='_blank'>this page</a>
+on the documetation. Just put the name of the formatter, you don't need the part `null_ls.builtins.formatting`
+</Note>
+
+- Customize the configuration settings for the formatter within its respective table.
+The available options and their meanings may vary depending on the formatter you
+are using. Refer to the documentation of the specific formatter for more information on the
+available options.
+
+- Save the `better-vim.lua` file.
+
+- Restart Better Vim or reload the configuration to apply the changes.
+
+Congratulations! You have successfully installed a new formatter using none-ls.
+Better Vim will now utilize the formatter to format your code according to the
+specified configuration, helping you maintain consistent and well-formatted code.
