@@ -71,13 +71,13 @@ Congratulations! You have successfully installed a new Language Server using Mas
 Better Vim will now utilize the features provided by the LSP to enhance your
 coding workflow.
 
-## Installing New Formatters with null-ls
+## Installing New Formatters with none-ls
 
-null-ls is a plugin integrated with Better Vim that enables you to format your code
-using various formatters. By leveraging null-ls, you can maintain consistent code
+none-ls is a plugin integrated with Better Vim that enables you to format your code
+using various formatters. By leveraging none-ls, you can maintain consistent code
 formatting and adhere to coding style guidelines across different programming languages.
 
-To install a new formatter using null-ls, follow these steps:
+To install a new formatter using none-ls, follow these steps:
 
 - Open the `better-vim.lua` file located in your Better Vim configuration directory.
 
@@ -94,7 +94,7 @@ return {
 - Inside the `formatters` table, add a new entry for the desired formatter.
 The key should be a unique identifier for the formatter, and the value should be
 an empty table. This table is passed to the `with` method when configuring formatting sources
-for null-ls. For example, to install the `blade_formatter` formatter, your
+for none-ls. For example, to install the `blade_formatter` formatter, your
 configuration would look like this:
 
 ```lua better-vim.lua
@@ -106,7 +106,7 @@ return {
 ```
 
 <Note>
-You can find all formatters for null-ls following <a href='https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#formatting' target='_blank'>this page</a>
+You can find all formatters for none-ls following <a href='https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md#formatting' target='_blank'>this page</a>
 on the documetation. Just put the name of the formatter, you don't need the part `null_ls.builtins.formatting`
 </Note>
 
@@ -119,6 +119,6 @@ available options.
 
 - Restart Better Vim or reload the configuration to apply the changes.
 
-Congratulations! You have successfully installed a new formatter using null-ls.
+Congratulations! You have successfully installed a new formatter using none-ls.
 Better Vim will now utilize the formatter to format your code according to the
 specified configuration, helping you maintain consistent and well-formatted code.
