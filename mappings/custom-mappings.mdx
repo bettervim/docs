@@ -1,0 +1,114 @@
+### Changing the default leader key
+Better Vim uses the `Space` key as the default leader. If you want to change it, you can use the `better-vim.lua` file.
+To change your leader from `Space` to `,` you can update your `better-vim.lua` to something like:
+
+```lua better-vim.lua
+return {
+  mappings = {
+    leader = ",",
+  },
+}
+```
+### Creating your own mappings
+There are two ways to create your own custom mappings:
+- Using the [whichkey.nvim](https://github.com/folke/which-key.nvim) plugin + the Better Vim modules;
+- Using `lua` and `hooks.after_setup` hook in `better-vim.lua`.
+
+### Creating mappings with whichkey
+To create your own mappings using the whichkey plugin you'll use the `better-vim.lua` module. Let's see how to create a mapping to open the file explorer using `ctrl + b`:
+```lua better-vim.lua
+return {
+  mappings = {
+    custom = {
+    ["<c-b>"] = {
+       "<cmd>NvimTreeToggle<cr>",
+       "Open file explorer",
+      },
+    },
+  },
+}
+```
+We can split the mapping creation into 3 parts:
+- 1. On the line `4` we define the combination of keys that we want to use
+- 2. On the line `5` we set the command that we want to execute
+- 3. And on the line `6` we set a description for this mapping
+
+📢 Since we're using whichkey.nvim to create custom mappings, you may want to check its [official documentation](https://github.com/folke/which-key.nvim/blob/main/doc/which-key.nvim.txt) before creating your own mappings.
+
+### Creating mappings by mode
+
+You can also create your own mappings **by mode**. This is important if you have
+the same shortcuts, but want different commands for different modes:
+
+```lua better-vim.lua
+return {
+  mappings = {
+    by_mode = {
+      i = {}, -- use these tables to create your mapings
+      v = {}, -- ┙
+    },
+  },
+}
+```
+
+You can use `i` (for `insert` mode), `n` (for `normal` mode), `v` (for `visual`
+and `select` modes) or `x` (for only `visual` mode). The options are the same as
+used in `mappings.custom`.
+
+### Creating mappings for tabs
+
+You can create custom mappings to change tabs. The default mapping is `alt/option` + **tab number**.
+To customize it, just pass a function to the `tabs` key inside `mappings` table.
+The function receives the `tab` number. That way you just concatenate the tab number with your custom keys:
+
+``` lua better-vim.lua
+return {
+  mappings = {
+  tabs = function(tab)
+    return "<leader>h" .. tab
+  end,
+  }
+}
+```
+
+The example above will create the mappings:
+
+```
+<leader>h1 -> first tab
+<leader>h2 -> second tab
+...
+<leader>h20 -> twentyth tab
+```
+
+Now, you can use `<leader>h1` to go to tab 1, instead of `alt` + `1`.
+
+### Creating mappings with lua
+
+To create custom mappings using `lua` you can use the `hooks.after_setup` entry in `better-vim.lua` file, following this [tutorial](https://neovim.io/doc/user/lua-guide.html#lua-guide-mappings)
+from the Neovim official documentation.
+
+### Custom mappings for autocomplete (cmp) 
+
+You can customize your mappings for autocomplete (`nvim-cmp`) using `lua`, just use the `cmp` entry in your configuration. 
+Check out the example below with defaults:
+
+```lua better-vim.lua
+return {
+  cmp = {
+    mappings = {
+      scroll_docs_down = "<C-d>",
+      scroll_docs_up = "<C-u>",
+      next_item = "<C-n>",
+      prev_item = "<C-p>",
+      show_list = "<C-Space>",
+      confirm = "<CR>",
+    },
+    before_default_sources = {},
+    after_default_sources = {},
+  }
+}
+```
+
+The `before_default_sources` and `after_default_sources` options can be used to load 
+`nvim-cmp` plugins before and after the default sources that is already installed with Better Vim.
+If you want to know more about `nvim-cmp` sources, check out the [plugin documentation](https://github.com/hrsh7th/nvim-cmp).

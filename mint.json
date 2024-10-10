@@ -1,0 +1,87 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "BetterVim | Your ultimate Neovim distribution",
+  "logo": {
+    "dark": "/images/logo.svg",
+    "light": "/images/logo.svg"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#07E4A2",
+    "light": "#fafafa",
+    "dark": "#000",
+    "background": {
+      "light": "#fafafa",
+      "dark": "#0f1117"
+    }
+  },
+  "topbarLinks": [],
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "overview/introduction"
+  },
+  "anchors": [
+    {
+      "name": "Get your license",
+      "icon": "bolt",
+      "url": "https://bettervim.com"
+    },
+    {
+      "name": "FAQ",
+      "icon": "question",
+      "url": "https://bettervim.com/#faq"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Overview",
+      "pages": [
+        "introduction",
+        "installation",
+        "updating",
+        "uninstalling",
+        "features",
+        "how-to-guides",
+        "troubleshooting"
+      ]
+    },
+    {
+      "group": "Customization",
+      "pages": [
+        "customization/how-it-works",
+        "customization/installing-plugins",
+        "customization/installing-lsps",
+        "customization/theme",
+        "customization/flags",
+        "customization/override-defaults",
+        "customization/plugins"
+      ]
+    },
+    {
+      "group": "Mappings",
+      "pages": [
+        "mappings/general",
+        "mappings/lsp",
+        "mappings/file-explorer",
+        "mappings/file-finder",
+        "mappings/custom-mappings"
+      ]
+    },
+    {
+      "group": "General",
+      "pages": [
+        "general/credits",
+        "general/learning-resources",
+        "general/analytics"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/mintlify",
+    "github": "https://github.com/mintlify",
+    "linkedin": "https://www.linkedin.com/company/mintsearch"
+  },
+  "modeToggle": {
+    "default": "dark"
+  }
+}

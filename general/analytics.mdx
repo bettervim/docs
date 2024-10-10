@@ -1,0 +1,29 @@
+--- 
+title: Analytics - How we collect data
+--- 
+
+### Overview
+
+We are sending analytics events from BetterVim to help improve the product by making data-driven decisions. The data we collect is fully anonymous, and we’ve taken care to ensure privacy is respected.
+
+#### What We Collect:
+- **Leader Key**: The key you set as your leader in BetterVim.
+- **Plugins**: The list of installed plugins.
+- **LSPs**: The language servers you're using.
+- **Treesitter**: Information about Treesitter parsers in use.
+- **Flags Enabled**: Configuration flags that are active in your setup.
+
+#### How We Ensure Anonymity:
+The data is truly anonymous because we do **not** rely on any identifier that could link back to you personally. Instead, we generate a unique ID per installation purely to count unique events by user. This ID is in no way tied to personal information, including your details on Gumroad or any other service.
+
+#### Analytics Tool:
+We use **[PostHog](https://posthog.com/)** as our analytics tool, but we’ve disabled geo-IP collection to avoid gathering any geolocation data, such as country or city. This ensures we don’t track or store your location information.
+
+#### When We Send Data:
+We send analytics data every two hours, but only when the editor is opened. Upon opening the editor, we check if two hours have passed since the last event. If so, the data is sent; if not, the event is bypassed.
+
+#### Purpose of Data Collection:
+The collected data is used exclusively to help us make decisions based on product usage trends. It allows us to prioritize features and improvements that matter most to our users.
+
+#### What We Don’t Collect:
+We are **not** collecting any other details about your environment beyond the listed information. You can access the implementation of our analytics at `~/.config/nvim/lua/better-vim-core/tasks/analytics.lua`, and the exact data being sent can be viewed at `~/.config/better-vim/.bettervim-analytics-data.json`.
