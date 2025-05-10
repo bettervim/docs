@@ -1,0 +1,41 @@
+[snippet-better-vim-lua]
+match='''
+<CodeSnippet
+	code={`:[content]`}
+	lang="javascript"
+	fileType="config"
+/>
+'''
+rewrite='''
+```lua better-vim.lua
+:[content]
+```
+'''
+
+[tips]
+match='''
+<Tip
+  variant="info"
+  text=":[text]"
+  title="Info"
+/>
+'''
+
+rewrite='''
+<Note>
+:[text]
+</Note>
+'''
+
+[imports]
+match="import :[rest];"
+rewrite=""
+
+[brs]
+match="<br/>"
+rewrite=""
+
+
+[kbd-component]
+match="<Kbd>:[key1]</Kbd> + <Kbd>:[key2]</Kbd>"
+rewrite="`:[key1] + :[key2]`"
